@@ -2,7 +2,7 @@
   <div>
     <MyHeader :addTodo="addTodo" />
     <List :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
-    <MyFooter />
+    <MyFooter :todos="todos" />
   </div>
 </template>
 
