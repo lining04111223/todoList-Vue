@@ -2,7 +2,11 @@
   <div>
     <MyHeader :addTodo="addTodo" />
     <List :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
-    <MyFooter :todos="todos" :selectAllTodo="selectAllTodo" />
+    <MyFooter
+      :todos="todos"
+      :selectAllTodo="selectAllTodo"
+      :clearAllTodo="clearAllTodo"
+    />
   </div>
 </template>
 
@@ -45,6 +49,11 @@ export default {
     selectAllTodo(tatalDone) {
       this.todos.forEach((todo) => {
         todo.done = tatalDone;
+      });
+    },
+    clearAllTodo() {
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done;
       });
     },
   },
