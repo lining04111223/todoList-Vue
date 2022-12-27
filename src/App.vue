@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MyHeader />
-    <List />
+    <MyHeader :addTodo="addTodo" />
+    <List :todos="todos" />
     <MyFooter />
   </div>
 </template>
@@ -16,6 +16,20 @@ export default {
     MyHeader,
     List,
     MyFooter,
+  },
+  data() {
+    return {
+      todos: [
+        { id: "001", title: "抽烟", done: true },
+        { id: "002", title: "喝酒", done: false },
+        { id: "003", title: "开车", done: true },
+      ],
+    };
+  },
+  methods: {
+    addTodo(todo) {
+      this.todos.unshift(todo);
+    },
   },
 };
 </script>
