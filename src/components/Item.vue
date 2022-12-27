@@ -4,18 +4,24 @@
       <input type="checkbox" :checked="todo.done" @change="changeSelect" />
       <span>{{ todo.title }}</span>
     </label>
-    <button class="btn btn-danger" style="display: none">删除</button>
+    <button class="btn btn-danger" @click="handleDelete">删除</button>
   </li>
 </template>
 
 <script>
 export default {
   name: `Item`,
-  props: ["todo", "checkTodo"],
+  props: ["todo", "checkTodo", "deleteTodo"],
   methods: {
     changeSelect() {
       this.checkTodo(this.todo.id);
       console.log(this.todo.id);
+    },
+    handleDelete() {
+      console.log(this.todo.id);
+      if (confirm("确定吗？")) {
+        this.deleteTodo(this.todo.id);
+      }
     },
   },
 };
@@ -33,5 +39,18 @@ li {
 li label {
   float: left;
   cursor: pointer;
+}
+
+li button {
+  float: right;
+  display: none;
+  margin-top: 3px;
+}
+li:hover {
+  background-color: #ddd;
+}
+
+li:hover button {
+  display: block;
 }
 </style>
