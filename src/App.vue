@@ -1,7 +1,7 @@
 <template>
   <div>
     <MyHeader :addTodo="addTodo" />
-    <List :todos="todos" />
+    <List :todos="todos" :checkTodo="checkTodo" />
     <MyFooter />
   </div>
 </template>
@@ -29,6 +29,13 @@ export default {
   methods: {
     addTodo(todo) {
       this.todos.unshift(todo);
+    },
+    checkTodo(id) {
+      this.todos.forEach((todo) => {
+        if (todo.id === id) {
+          todo.done = !todo.done;
+        }
+      });
     },
   },
 };
