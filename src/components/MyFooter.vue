@@ -1,12 +1,12 @@
 <template>
-  <div class="todo-footer">
+  <div class="todo-footer" v-show="total">
     <label>
-      <input type="checkbox" />
+      <input :checked="ifEaqual" type="checkbox" @click="selectAll" />
     </label>
 
     <span>
       <span>已完成{{ doneCheck }}</span
-      >/全部{{ todos.length }}</span
+      >/全部{{ total }}</span
     >
     <button class="btn btn-danger">清除已完成任务</button>
   </div>
@@ -18,7 +18,7 @@ export default {
   data() {
     return { name: "lighthouse", address: "Vancouver" };
   },
-  props: ["todos"],
+  props: ["todos", "selectAllTodo"],
   computed: {
     doneCheck() {
       let i = 0;
@@ -28,6 +28,18 @@ export default {
         }
       });
       return i;
+    },
+    total() {
+      return this.todos.length;
+    },
+    ifEaqual() {
+      return this.doneCheck === this.total && this.total !== 0;
+    },
+  },
+  methods: {
+    selectAll(e) {
+      console.log(e.target.checked);
+      this.selectAllTodo(e.target.checked);
     },
   },
 };
