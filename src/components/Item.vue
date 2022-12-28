@@ -8,6 +8,8 @@
         v-show="todo.isEdit"
         :value="todo.title"
         @keyup.enter="handleEnter(todo, $event)"
+        @blur="handleEnter(todo, $event)"
+        ref="inputTitle"
       />
     </label>
     <button class="btn btn-danger" @click="handleDelete">删除</button>
@@ -46,6 +48,9 @@ export default {
         console.log("@@@");
         this.$set(todo, "isEdit", true);
       }
+      this.$nextTick(function () {
+        this.$refs.inputTitle.focus();
+      });
     },
     handleEnter(todo, e) {
       todo.isEdit = false;
