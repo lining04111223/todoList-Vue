@@ -15,10 +15,11 @@ export default {
         title: e.target.value,
         done: false,
       };
-      this.$emit("addTodo", todoOBJ);
+      this.addTodo(todoOBJ);
       e.target.value = "";
     },
   },
+  props: ["addTodo"],
 };
 </script>
 

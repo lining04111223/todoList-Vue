@@ -1,11 +1,11 @@
 <template>
   <div>
-    <MyHeader @addTodo="addTodo" />
+    <MyHeader :addTodo="addTodo" />
     <List :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
     <MyFooter
       :todos="todos"
-      @selectAllTodo="selectAllTodo"
-      @clearAllTodo="clearAllTodo"
+      :selectAllTodo="selectAllTodo"
+      :clearAllTodo="clearAllTodo"
     />
   </div>
 </template>

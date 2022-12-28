@@ -20,7 +20,7 @@ export default {
   data() {
     return { name: "lighthouse", address: "Vancouver" };
   },
-  props: ["todos"],
+  props: ["todos", "selectAllTodo", "clearAllTodo"],
   computed: {
     doneCheck() {
       let i = 0;
@@ -39,16 +39,14 @@ export default {
         return this.doneCheck === this.total && this.total !== 0;
       },
       set(value) {
-        //this.selectAllTodo(value);
-        this.$emit("selectAllTodo", value);
+        this.selectAllTodo(value);
       },
     },
   },
   methods: {
     clearAll() {
       if (confirm("确定吗？")) {
-        //this.clearAllTodo();
-        this.$emit("clearAllTodo");
+        this.clearAllTodo();
       }
     },
   },
