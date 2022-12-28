@@ -11,17 +11,16 @@
 <script>
 export default {
   name: `Item`,
-  props: ["todo"],
+  props: ["todo", "checkTodo", "deleteTodo"],
   methods: {
     changeSelect() {
-      //this.checkTodo(this.todo.id);
-      this.$bus.$emit("checkTodo", this.todo.id);
+      this.checkTodo(this.todo.id);
+      console.log(this.todo.id);
     },
     handleDelete() {
       console.log(this.todo.id);
       if (confirm("确定吗？")) {
-        //this.deleteTodo(this.todo.id);
-        this.$bus.$emit("deleteTodo", this.todo.id);
+        this.deleteTodo(this.todo.id);
       }
     },
   },
