@@ -2,9 +2,22 @@
   <li>
     <label>
       <input type="checkbox" :checked="todo.done" @change="changeSelect" />
-      <span>{{ todo.title }}</span>
+      <span v-show="!todo.isEdit">{{ todo.title }}</span>
+      <input
+        type="text"
+        v-show="todo.isEdit"
+        :value="todo.title"
+        @keyup.enter="handleEnter(todo, $event)"
+      />
     </label>
     <button class="btn btn-danger" @click="handleDelete">删除</button>
+    <button
+      v-show="!todo.isEdit"
+      class="btn btn-edit"
+      @click="handleEdit(todo)"
+    >
+      编辑
+    </button>
   </li>
 </template>
 
@@ -25,6 +38,19 @@ export default {
         //  this.$bus.$emit("deleteTodo", this.todo.id);
         pubsub.publish("deleteTodo", this.todo.id);
       }
+    },
+    handleEdit(todo) {
+      if (Object.prototype.hasOwnProperty.call(todo, "isEdit")) {
+        todo.isEdit = true;
+      } else {
+        console.log("@@@");
+        this.$set(todo, "isEdit", true);
+      }
+    },
+    handleEnter(todo, e) {
+      todo.isEdit = false;
+      if (!e.target.value.trim()) return alert("输入不能为空");
+      this.$bus.$emit("updateTodo", todo.id, e.target.value);
     },
   },
 };

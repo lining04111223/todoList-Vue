@@ -55,4 +55,14 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+button {
+  float: right;
+  margin-top: 3px;
+}
+
+button:hover {
+  display: block;
+  background-color: #7a0301;
+}
+</style>
