@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import pubsub from "pubsub-js";
 export default {
   name: `Item`,
   props: ["todo"],
@@ -22,8 +21,7 @@ export default {
       console.log(this.todo.id);
       if (confirm("确定吗？")) {
         //this.deleteTodo(this.todo.id);
-        //  this.$bus.$emit("deleteTodo", this.todo.id);
-        pubsub.publish("deleteTodo", this.todo.id);
+        this.$bus.$emit("deleteTodo", this.todo.id);
       }
     },
   },
