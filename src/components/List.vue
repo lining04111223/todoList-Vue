@@ -1,11 +1,19 @@
 <template>
   <ul class="todo-main">
-    <Item v-for="todoOBJ in todos" :key="todoOBJ.id" :todo="todoOBJ" />
+    <transition-group
+      appear
+      name="animate__animated animate__bounce"
+      enter-active-class="animate__bounceInRight"
+      leave-active-class="animate__fadeOutRight"
+    >
+      <Item v-for="todoOBJ in todos" :key="todoOBJ.id" :todo="todoOBJ" />
+    </transition-group>
   </ul>
 </template>
 
 <script>
 import Item from "./Item.vue";
+import "animate.css";
 export default {
   name: `List`,
 
